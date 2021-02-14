@@ -1,10 +1,12 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 // Represents an array list of recipes
 public class RecipeList {
-    private ArrayList<Recipe> recipeCollection;
+    private List<Recipe> recipeCollection;
 
     public RecipeList() {
         recipeCollection = new ArrayList<>();
@@ -19,6 +21,20 @@ public class RecipeList {
     public void addRecipe(Recipe recipe) {
         recipeCollection.add(recipe);
     }
+
+    public void displayRecipes() {
+        int index = 0;
+        for (Recipe recipe : recipeCollection) {
+            index = index + 1;
+            System.out.println(index + "." + recipe.getTitle());
+        }
+    }
+
+
+    public Iterator<Recipe> iterator() {
+        return recipeCollection.iterator();
+    }
+
 
 
 

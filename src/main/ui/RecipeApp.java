@@ -1,6 +1,7 @@
 package ui;
 
 import model.Recipe;
+import model.RecipeList;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -8,11 +9,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class RecipeApp {
-    private List<Recipe> recipeCollections = new ArrayList<Recipe>();
+    private RecipeList recipeCollections;
     private Scanner input;
 
     // EFFECTS: runs the recipe application
     public RecipeApp() {
+        recipeCollections = new RecipeList();
         runRecipe();
     }
 
@@ -40,16 +42,18 @@ public class RecipeApp {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes RecipeList
     private void init() {
         input = new Scanner(System.in);
-        recipeCollections = new ArrayList<>();
+        recipeCollections = new RecipeList();
     }
 
     // MODIFIES: this
     // EFFECTS: processes user command
     private void processCommand(String command) {
         if (command.equals("1")) {
-            viewAllRecipes();
+            doViewAllRecipes();
         } else if (command.equals("2")) {
             selectRecipe();
         } else if (command.equals("3")) {
@@ -72,13 +76,9 @@ public class RecipeApp {
     }
 
     // EFFECTS: display all recipes in the current collection
-    private void viewAllRecipes() {
+    private void doViewAllRecipes() {
         System.out.println("Recipes");
-        int index = 0;
-        for (Recipe recipe : recipeCollections) {
-            index = index + 1;
-            System.out.println(index + "." + recipe.getTitle());
-        }
+        recipeCollections.displayRecipes();
     }
 
     // MODIFIES: this
@@ -90,17 +90,19 @@ public class RecipeApp {
         String ingredients = input.next();
         System.out.println("Enter the instructions of the recipe:");
         String instructions = input.next();
-        recipeCollections.add(new Recipe(title,ingredients,instructions));
+        Recipe recipe = new Recipe(title,ingredients,instructions);
+        recipeCollections.addRecipe(recipe);
         System.out.println("A new recipe is added to your collection!");
     }
 
     // EFFECTS: select a recipe from the collection and display its details
     private void selectRecipe() {
         System.out.println("Select from:");
-        viewAllRecipes();
+        doViewAllRecipes();
         System.out.println("Enter the title of the recipe you want to select:");
         String title = input.next();
-        for (Recipe recipe : recipeCollections) {
+        for (Iterator<Recipe> i = recipeCollections.iterator();i.hasNext();) {
+            Recipe recipe = i.next();
             if (recipe.getTitle().equals(title)) {
                 System.out.println("Title: " + recipe.getTitle());
                 System.out.println("Ingredients: " + recipe.getIngredients());
@@ -114,10 +116,10 @@ public class RecipeApp {
     // MODIFIES: this
     // EFFECTS: remove a selected recipe from the collection
     private void removeRecipe() {
-        viewAllRecipes();
+        doViewAllRecipes();
         System.out.println("Enter the title of the recipe you want to remove:");
         String title = input.next();
-        for (Iterator<Recipe> i = recipeCollections.listIterator();i.hasNext();) {
+        for (Iterator<Recipe> i = recipeCollections.iterator();i.hasNext();) {
             Recipe recipe = i.next();
             if (recipe.getTitle().equals(title)) {
                 i.remove();

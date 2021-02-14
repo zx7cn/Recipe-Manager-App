@@ -1,5 +1,7 @@
-package model;
+package test;
 
+import model.Recipe;
+import model.RecipeList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,5 +22,6 @@ class RecipeListTest {
         testRecipeList.addRecipe(recipe);
         assertTrue(testRecipeList.contains(recipe));
     }
+
 
 }
