@@ -78,7 +78,12 @@ public class RecipeApp {
     // EFFECTS: display all recipes in the current collection
     private void doViewAllRecipes() {
         System.out.println("Recipes");
-        recipeCollections.displayRecipes();
+        int index = 0;
+        for (Iterator<Recipe> i = recipeCollections.iterator(); i.hasNext(); ) {
+            Recipe recipe = i.next();
+            index = index + 1;
+            System.out.println(index + "." + recipe.getTitle());
+        }
     }
 
     // MODIFIES: this

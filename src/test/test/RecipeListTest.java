@@ -22,6 +22,4 @@ class RecipeListTest {
         testRecipeList.addRecipe(recipe);
         assertTrue(testRecipeList.contains(recipe));
     }
-
-
 }

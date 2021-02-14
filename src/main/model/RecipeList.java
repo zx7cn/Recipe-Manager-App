@@ -12,8 +12,8 @@ public class RecipeList {
         recipeCollection = new ArrayList<>();
     }
 
-    public boolean contains(Recipe r) {
-        return recipeCollection.contains(r);
+    public boolean contains(Recipe recipe) {
+        return recipeCollection.contains(recipe);
     }
 
     // MODIFIES: this
@@ -21,15 +21,6 @@ public class RecipeList {
     public void addRecipe(Recipe recipe) {
         recipeCollection.add(recipe);
     }
-
-    public void displayRecipes() {
-        int index = 0;
-        for (Recipe recipe : recipeCollection) {
-            index = index + 1;
-            System.out.println(index + "." + recipe.getTitle());
-        }
-    }
-
 
     public Iterator<Recipe> iterator() {
         return recipeCollection.iterator();
