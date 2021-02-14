@@ -3,9 +3,7 @@ package ui;
 import model.Recipe;
 import model.RecipeList;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Scanner;
 
 public class RecipeApp {
@@ -55,11 +53,11 @@ public class RecipeApp {
         if (command.equals("1")) {
             doViewAllRecipes();
         } else if (command.equals("2")) {
-            selectRecipe();
+            doSelectRecipe();
         } else if (command.equals("3")) {
             doAddRecipe();
         } else if (command.equals("4")) {
-            removeRecipe();
+            doRemoveRecipe();
         } else {
             System.out.println("Invalid Section");
         }
@@ -101,7 +99,7 @@ public class RecipeApp {
     }
 
     // EFFECTS: select a recipe from the collection and display its details
-    private void selectRecipe() {
+    private void doSelectRecipe() {
         System.out.println("Select from:");
         doViewAllRecipes();
         System.out.println("Enter the title of the recipe you want to select:");
@@ -120,7 +118,7 @@ public class RecipeApp {
 
     // MODIFIES: this
     // EFFECTS: remove a selected recipe from the collection
-    private void removeRecipe() {
+    private void doRemoveRecipe() {
         doViewAllRecipes();
         System.out.println("Enter the title of the recipe you want to remove:");
         String title = input.next();
