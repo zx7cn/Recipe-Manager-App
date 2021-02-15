@@ -96,6 +96,7 @@ public class RecipeApp {
         Recipe recipe = new Recipe(title,ingredients,instructions);
         recipeCollections.addRecipe(recipe);
         System.out.println("A new recipe is added to your collection!");
+        doViewAllRecipes();
     }
 
     // EFFECTS: select a recipe from the collection and display its details
@@ -129,6 +130,7 @@ public class RecipeApp {
                 System.out.println("The recipe has been removed from your collection!");
             }
         }
+        doViewAllRecipes();
     }
 }
 
