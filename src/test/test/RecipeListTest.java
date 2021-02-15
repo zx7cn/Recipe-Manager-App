@@ -21,6 +21,7 @@ class RecipeListTest {
 
     @Test
     public void testAddRecipe() {
+        assertFalse(testRecipeList.contains(recipe));
         testRecipeList.addRecipe(recipe);
         assertTrue(testRecipeList.contains(recipe));
     }

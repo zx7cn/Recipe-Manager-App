@@ -127,9 +127,9 @@ public class RecipeApp {
             Recipe recipe = i.next();
             if (recipe.getTitle().equals(title)) {
                 i.remove();
-                System.out.println("The recipe has been removed from your collection!");
             }
         }
+        System.out.println("The recipe has been removed from your collection!");
         doViewAllRecipes();
     }
 }
