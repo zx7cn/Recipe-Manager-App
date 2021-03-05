@@ -2,17 +2,27 @@ package ui;
 
 import model.Recipe;
 import model.RecipeList;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.Scanner;
 
+// Represents the recipe list application
 public class RecipeApp {
+    private static final String JSON_STORE = "./data/recipeList.txt";
     private RecipeList recipeCollections;
     private Scanner input;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: runs the recipe application
-    public RecipeApp() {
+    public RecipeApp() throws FileNotFoundException {
         recipeCollections = new RecipeList();
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runRecipe();
     }
 
@@ -58,6 +68,10 @@ public class RecipeApp {
             doAddRecipe();
         } else if (command.equals("4")) {
             doRemoveRecipe();
+        } else if (command.equals("5")) {
+            saveRecipeList();
+        } else if (command.equals("6")) {
+            loadWorkRoom();
         } else {
             System.out.println("Invalid Section");
         }
@@ -70,6 +84,8 @@ public class RecipeApp {
         System.out.println("\t2 - Select a recipe");
         System.out.println("\t3 - Add a new recipe");
         System.out.println("\t4 - Remove a recipe");
+        System.out.println("\t5 - Save recipe list");
+        System.out.println("\t6 - Load recipe list from file");
         System.out.println("\tq - Quit");
     }
 
@@ -111,8 +127,6 @@ public class RecipeApp {
                 System.out.println("Title: " + recipe.getTitle());
                 System.out.println("Ingredients: " + recipe.getIngredients());
                 System.out.println("Instructions: " + recipe.getInstructions());
-            } else {
-                System.out.println("Invalid Selection");
             }
         }
     }
@@ -131,6 +145,29 @@ public class RecipeApp {
         }
         System.out.println("The recipe has been removed from your collection!");
         doViewAllRecipes();
+    }
+
+    // EFFECTS: saves the recipe list to file
+    private void saveRecipeList() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(recipeCollections);
+            jsonWriter.close();
+            System.out.println("Saved the recipe list" + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads recipe list from file
+    private void loadWorkRoom() {
+        try {
+            recipeCollections = jsonReader.read();
+            System.out.println("Loaded the recipe list from" + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 }
 

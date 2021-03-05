@@ -1,6 +1,9 @@
 package model;
 
-public class Recipe {
+import org.json.JSONObject;
+import persistence.Writable;
+
+public class Recipe implements Writable {
     private String title;         // the title of the recipe
     private String ingredients;   // the ingredients of the recipe
     private String instructions;  // the instructions of the recipe
@@ -10,9 +13,9 @@ public class Recipe {
     //          recipeIngredients is set to recipeIngredients;
     //          recipeInstructions is set to recipeInstructions;
     public Recipe(String recipeTitle, String recipeIngredients, String recipeInstructions) {
-        title = recipeTitle;
-        ingredients = recipeIngredients;
-        instructions = recipeInstructions;
+        this.title = recipeTitle;
+        this.ingredients = recipeIngredients;
+        this.instructions = recipeInstructions;
     }
 
     public String getTitle() {
@@ -27,5 +30,13 @@ public class Recipe {
         return instructions;
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("title", title);
+        json.put("ingredients", ingredients);
+        json.put("instructions", instructions);
+        return json;
+    }
 
 }

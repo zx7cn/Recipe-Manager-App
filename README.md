@@ -11,4 +11,5 @@ manage recipes.
 - As a user, I want to be able to select a recipe and view it in detail
 - As a user, I want to be able to add a new recipe to my current collection
 - As a user, I want to be able to remove a recipe from my current collection
-
+- As a user, I want to be able to save my recipe list to file
+- As a user, I want to be able to load my recipe list from file
