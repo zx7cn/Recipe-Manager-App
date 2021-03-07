@@ -25,15 +25,15 @@ public class JsonWriterTest extends JsonTest{
     }
 
     @Test
-    void testWriterEmptyWorkroom() {
+    void testWriterEmptyRecipeList() {
         try {
             RecipeList rl = new RecipeList();
-            JsonWriter writer = new JsonWriter("./data/testWriterEmptyWorkroom.json");
+            JsonWriter writer = new JsonWriter("./data/testWriterEmptyRecipeList.json");
             writer.open();
             writer.write(rl);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterEmptyWorkroom.json");
+            JsonReader reader = new JsonReader("./data/testWriterEmptyRecipeList.json");
             rl = reader.read();
             assertEquals(0, rl.recipesNum());
         } catch (IOException e) {
@@ -42,17 +42,17 @@ public class JsonWriterTest extends JsonTest{
     }
 
     @Test
-    void testWriterGeneralWorkroom() {
+    void testWriterGeneralRecipeList() {
         try {
             RecipeList rl = new RecipeList();
             rl.addRecipe(new Recipe("a","b","c"));
             rl.addRecipe(new Recipe("z","x","y"));
-            JsonWriter writer = new JsonWriter("./data/testWriterGeneralWorkroom.json");
+            JsonWriter writer = new JsonWriter("./data/testWriterGeneralRecipeList.json");
             writer.open();
             writer.write(rl);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterGeneralWorkroom.json");
+            JsonReader reader = new JsonReader("./data/testWriterGeneralRecipeList.json");
             rl = reader.read();
             List<Recipe> recipes = rl.getRecipes();
             assertEquals(2, recipes.size());

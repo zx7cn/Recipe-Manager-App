@@ -43,6 +43,7 @@ public class JsonReaderTest extends JsonTest{
             checkRecipe("a", "b", "c", recipes.get(0));
             checkRecipe("z", "x", "y", recipes.get(1));
         } catch (IOException e) {
+            System.out.println(e);
             fail("Couldn't read from file");
         }
     }

@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 // Represents the recipe list application
 public class RecipeApp {
-    private static final String JSON_STORE = "./data/recipeList.txt";
+    private static final String JSON_STORE = "./data/recipeList.json";
     private RecipeList recipeCollections;
     private Scanner input;
     private JsonWriter jsonWriter;
