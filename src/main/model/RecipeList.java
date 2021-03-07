@@ -42,6 +42,7 @@ public class RecipeList implements Writable {
         return recipeCollection.iterator();
     }
 
+    // This method is adapted from the JsonSerializationDemo project
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -50,6 +51,7 @@ public class RecipeList implements Writable {
     }
 
     // EFFECTS: returns things in this recipe list as a JSON array
+    // This method is adapted from the JsonSerializationDemo project
     private JSONArray recipesToJson() {
         JSONArray jsonArray = new JSONArray();
 

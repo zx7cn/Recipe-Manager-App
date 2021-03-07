@@ -19,6 +19,7 @@ public class RecipeApp {
     private JsonReader jsonReader;
 
     // EFFECTS: runs the recipe application
+    // Adapted from the JsonSerializationDemo project
     public RecipeApp() throws FileNotFoundException {
         recipeCollections = new RecipeList();
         jsonWriter = new JsonWriter(JSON_STORE);
@@ -148,6 +149,7 @@ public class RecipeApp {
     }
 
     // EFFECTS: saves the recipe list to file
+    // This method is adapted from the JsonSerializationDemo project
     private void saveRecipeList() {
         try {
             jsonWriter.open();
@@ -161,6 +163,7 @@ public class RecipeApp {
 
     // MODIFIES: this
     // EFFECTS: loads recipe list from file
+    // This method is adapted from the JsonSerializationDemo project
     private void loadWorkRoom() {
         try {
             recipeCollections = jsonReader.read();

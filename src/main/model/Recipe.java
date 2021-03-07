@@ -3,6 +3,7 @@ package model;
 import org.json.JSONObject;
 import persistence.Writable;
 
+// Represents a recipe having a title, ingredients, and instructions
 public class Recipe implements Writable {
     private String title;         // the title of the recipe
     private String ingredients;   // the ingredients of the recipe
@@ -30,6 +31,7 @@ public class Recipe implements Writable {
         return instructions;
     }
 
+    // This method is adapted from the JsonSerializationDemo project
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
