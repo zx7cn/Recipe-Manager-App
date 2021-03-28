@@ -66,20 +66,6 @@ public class RecipeList implements Writable {
         return sb.toString();
     }
 
-    // MODIFIES: todoList text file
-    // EFFECTS: saves the items on todoList on to a text file
-    public void save(RecipeList list) throws IOException {
-        PrintWriter writer = new PrintWriter("recipeList.json", "UTF-8");
-        for (Recipe r : recipeCollection) {
-            System.out.print("Title: " + r.getTitle());
-            System.out.print("   Ingredients: " + r.getIngredients());
-            System.out.println("   Instructions: " + r.getInstructions());
-            writer.println(r.getTitle() + " " + r.getIngredients() + " " + r.getInstructions());
-        }
-        writer.close();
-    }
-
-
     public Iterator<Recipe> iterator() {
         return recipeCollection.iterator();
     }
