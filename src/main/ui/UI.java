@@ -68,7 +68,7 @@ public class UI extends JFrame {
     }
 
     // MODIFIES: this
-    // EFFECTS: creates the area which prints all text messages
+    // EFFECTS: creates the area which prints all messages
     private void createTextPanel() {
         textPanel = new JPanel();
         textArea = new JTextArea();
