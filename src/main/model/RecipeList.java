@@ -1,14 +1,15 @@
 package model;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.*;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 
 // Represents an array list of recipes
 public class RecipeList implements Writable {
@@ -58,7 +59,8 @@ public class RecipeList implements Writable {
                 Recipe recipe = i.next();
                 index = index + 1;
                 sb.append("\n" + index + ". Title: " + recipe.getTitle()).append("     Ingredients: ")
-                        .append(recipe.getIngredients()).append("      Instructions: ").append(recipe.getInstructions());
+                        .append(recipe.getIngredients()).append("      Instructions: ")
+                        .append(recipe.getInstructions());
             }
         }
         return sb.toString();
@@ -98,7 +100,6 @@ public class RecipeList implements Writable {
         for (Recipe r : recipeCollection) {
             jsonArray.put(r.toJson());
         }
-
         return jsonArray;
     }
 }
