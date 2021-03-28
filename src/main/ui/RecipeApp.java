@@ -30,7 +30,7 @@ public class RecipeApp {
     // MODIFIES: this
     // EFFECTS: processes user input
     // This method is adapt from the runTeller method
-    private void runRecipe() {
+    public void runRecipe() {
         boolean keepGoing = true;
         String command = null;
 
@@ -72,7 +72,7 @@ public class RecipeApp {
         } else if (command.equals("5")) {
             saveRecipeList();
         } else if (command.equals("6")) {
-            loadWorkRoom();
+            loadRecipeList();
         } else {
             System.out.println("Invalid Section");
         }
@@ -150,7 +150,7 @@ public class RecipeApp {
 
     // EFFECTS: saves the recipe list to file
     // This method is adapted from the JsonSerializationDemo project
-    private void saveRecipeList() {
+    public void saveRecipeList() {
         try {
             jsonWriter.open();
             jsonWriter.write(recipeCollections);
@@ -164,7 +164,7 @@ public class RecipeApp {
     // MODIFIES: this
     // EFFECTS: loads recipe list from file
     // This method is adapted from the JsonSerializationDemo project
-    private void loadWorkRoom() {
+    public void loadRecipeList() {
         try {
             recipeCollections = jsonReader.read();
             System.out.println("Loaded the recipe list from" + JSON_STORE);

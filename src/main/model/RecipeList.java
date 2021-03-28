@@ -1,9 +1,10 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Collections;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -38,6 +39,45 @@ public class RecipeList implements Writable {
         return Collections.unmodifiableList(recipeCollection);
     }
 
+    // MODIFIES: this
+    // EFFECT: remove the recipe from recipe list
+    public void removeRecipe(String title) {
+        for (Iterator<Recipe> i = recipeCollection.iterator(); i.hasNext(); ) {
+            Recipe recipe = i.next();
+            if (recipe.getTitle().equals(title)) {
+                i.remove();
+            }
+        }
+    }
+
+    public String printAllRecipes() {
+        StringBuilder sb = new StringBuilder();
+        if (recipeCollection.size() >= 1) {
+            int index = 0;
+            for (Iterator<Recipe> i = recipeCollection.iterator(); i.hasNext(); ) {
+                Recipe recipe = i.next();
+                index = index + 1;
+                sb.append("\n" + index + ". Title: " + recipe.getTitle()).append("     Ingredients: ")
+                        .append(recipe.getIngredients()).append("      Instructions: ").append(recipe.getInstructions());
+            }
+        }
+        return sb.toString();
+    }
+
+    // MODIFIES: todoList text file
+    // EFFECTS: saves the items on todoList on to a text file
+    public void save(RecipeList list) throws IOException {
+        PrintWriter writer = new PrintWriter("recipeList.json", "UTF-8");
+        for (Recipe r : recipeCollection) {
+            System.out.print("Title: " + r.getTitle());
+            System.out.print("   Ingredients: " + r.getIngredients());
+            System.out.println("   Instructions: " + r.getInstructions());
+            writer.println(r.getTitle() + " " + r.getIngredients() + " " + r.getInstructions());
+        }
+        writer.close();
+    }
+
+
     public Iterator<Recipe> iterator() {
         return recipeCollection.iterator();
     }
@@ -52,7 +92,7 @@ public class RecipeList implements Writable {
 
     // EFFECTS: returns things in this recipe list as a JSON array
     // This method is adapted from the JsonSerializationDemo project
-    private JSONArray recipesToJson() {
+    public JSONArray recipesToJson() {
         JSONArray jsonArray = new JSONArray();
 
         for (Recipe r : recipeCollection) {

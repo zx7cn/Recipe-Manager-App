@@ -31,6 +31,18 @@ public class Recipe implements Writable {
         return instructions;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setIngredients(String ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
+    }
+
     // This method is adapted from the JsonSerializationDemo project
     @Override
     public JSONObject toJson() {
