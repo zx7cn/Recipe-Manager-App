@@ -3,7 +3,7 @@ package ui;
 import javax.swing.*;
 import java.awt.*;
 
-//Represents a collection of all the text field in the project
+//Represents a collection of all the text field
 public abstract class TextField {
     UI recipeList;
     JTextField textField;
