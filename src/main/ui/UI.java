@@ -152,14 +152,23 @@ public class UI extends JFrame {
         addPanelConstraints.gridx = 1;
         titleField = new AddTitleField(this, addPanel, addPanelConstraints);
 
-        ingredients = new JLabel("Ingredients: ");
-        addPanelConstraints.anchor = GridBagConstraints.LINE_END;
-        addPanelConstraints.gridx = 0;
-        addPanelConstraints.gridy = 1;
-        addPanel.add(ingredients, addPanelConstraints);
-        addPanelConstraints.anchor = GridBagConstraints.LINE_START;
-        addPanelConstraints.gridx = 1;
-        ingredientsField = new AddIngredientsField(this, addPanel, addPanelConstraints);
+        ingredientsPanel(addPanel);
+        instructionsPanel(addPanel);
+
+        addPanelConstraints.gridy = 3;
+        add = new AddTool(this, addPanel, addPanelConstraints);
+    }
+
+    //MODIFIES: this
+    //EFFECTS: Create a panel where users can input the instructions of the new recipe
+    public void instructionsPanel(JPanel addPanel) {
+        addPanel.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createTitledBorder("Add a recipe:"),
+                BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        GridBagConstraints addPanelConstraints = new GridBagConstraints();
+        addPanelConstraints.weightx = 0.5;
+        addPanelConstraints.weighty = 0.5;
+        addPanelConstraints.insets = new Insets(0, 0, 10, 0);
 
         instructions = new JLabel("Instructions: ");
         addPanelConstraints.anchor = GridBagConstraints.LINE_END;
@@ -171,9 +180,27 @@ public class UI extends JFrame {
         addPanelConstraints.anchor = GridBagConstraints.LINE_START;
         addPanelConstraints.gridx = 1;
         instructionsField = new AddInstructionsField(this, addPanel, addPanelConstraints);
+    }
 
-        addPanelConstraints.gridy = 3;
-        add = new AddTool(this, addPanel, addPanelConstraints);
+    //MODIFIES: this
+    //EFFECTS: Create a panel where users cna input the ingredients of the new recipe
+    public void ingredientsPanel(JPanel addPanel) {
+        addPanel.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createTitledBorder("Add a recipe:"),
+                BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        GridBagConstraints addPanelConstraints = new GridBagConstraints();
+        addPanelConstraints.weightx = 0.5;
+        addPanelConstraints.weighty = 0.5;
+        addPanelConstraints.insets = new Insets(0, 0, 10, 0);
+
+        ingredients = new JLabel("Ingredients: ");
+        addPanelConstraints.anchor = GridBagConstraints.LINE_END;
+        addPanelConstraints.gridx = 0;
+        addPanelConstraints.gridy = 1;
+        addPanel.add(ingredients, addPanelConstraints);
+        addPanelConstraints.anchor = GridBagConstraints.LINE_START;
+        addPanelConstraints.gridx = 1;
+        ingredientsField = new AddIngredientsField(this, addPanel, addPanelConstraints);
     }
 
     // MODIFIES: this
