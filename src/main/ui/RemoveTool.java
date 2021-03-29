@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 //Represents the tool used to remove recipes from the recipe list
-//The classes in the ui package are adapted from the project To-Do-List found on GitHub
 public class RemoveTool extends Tool {
     public RemoveTool(UI recipeList, JComponent parent, GridBagConstraints gc) {
         super(recipeList, parent, gc);

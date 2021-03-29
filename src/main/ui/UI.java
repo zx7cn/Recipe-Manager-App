@@ -5,15 +5,21 @@ import model.RecipeList;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+//Represents the graphical user interface
+//The classes in the ui package except Main and RecipeApp are adapted from the project
+// To-Do-List made by krystal-w on GitHub
 public class UI extends JFrame {
     private static final int WIDTH = 800;
     private static final int HEIGHT = 500;
