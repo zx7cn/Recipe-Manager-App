@@ -1,5 +1,6 @@
 package ui;
 
+import exceptions.RecipeNotFoundException;
 import model.Recipe;
 import model.RecipeList;
 import persistence.JsonReader;
@@ -244,7 +245,7 @@ public class UI extends JFrame {
 
     // MODIFIES: this
     // EFFECTS: remove the recipe with the given title
-    public void removeRecipe(String title) {
+    public void removeRecipe(String title) throws RecipeNotFoundException {
         recipeList.removeRecipe(title);
         System.out.println(title + " has been removed from your recipe list.");
     }

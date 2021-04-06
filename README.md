@@ -13,3 +13,15 @@ manage recipes.
 - As a user, I want to be able to remove a recipe from my current collection
 - As a user, I want to be able to save my recipe list to file
 - As a user, I want to be able to load my recipe list from file
+
+### Phase 4: Task 2
+I completed option 1. The removeRecipe() method in the RecipeList class has a robust design. It throws a 
+RecipeNotFoundException when the title of the given recipe does not match any recipes in the current recipe list. 
+The tests of this method is in the RecipeListTest class.
+
+I also added a type hierarchy to the project.
+In the ui package, I designed a hierarchy of tools. There is an abstract class called Tool, which has 3 subclasses: 
+AddTool (add a new recipe), RemoveTool (remove a recipe), and ViewTool (view all recipes). 
+Each class overrides 2 methods inherited from the super class: createButton() and addListener().
+
+

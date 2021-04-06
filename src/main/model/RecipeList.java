@@ -1,11 +1,10 @@
 package model;
 
+import exceptions.RecipeNotFoundException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -42,11 +41,13 @@ public class RecipeList implements Writable {
 
     // MODIFIES: this
     // EFFECT: remove the recipe from recipe list
-    public void removeRecipe(String title) {
+    public void removeRecipe(String title) throws RecipeNotFoundException {
         for (Iterator<Recipe> i = recipeCollection.iterator(); i.hasNext(); ) {
             Recipe recipe = i.next();
             if (recipe.getTitle().equals(title)) {
                 i.remove();
+            } else {
+                throw new RecipeNotFoundException();
             }
         }
     }
@@ -55,10 +56,9 @@ public class RecipeList implements Writable {
         StringBuilder sb = new StringBuilder();
         if (recipeCollection.size() >= 1) {
             int index = 0;
-            for (Iterator<Recipe> i = recipeCollection.iterator(); i.hasNext(); ) {
-                Recipe recipe = i.next();
+            for (Recipe recipe : recipeCollection) {
                 index = index + 1;
-                sb.append("\n" + index + ". Title: " + recipe.getTitle()).append("     Ingredients: ")
+                sb.append("\n").append(index).append(". Title: ").append(recipe.getTitle()).append("     Ingredients: ")
                         .append(recipe.getIngredients()).append("      Instructions: ")
                         .append(recipe.getInstructions());
             }

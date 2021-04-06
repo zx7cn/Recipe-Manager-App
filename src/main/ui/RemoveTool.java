@@ -1,5 +1,7 @@
 package ui;
 
+import exceptions.RecipeNotFoundException;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -30,7 +32,11 @@ public class RemoveTool extends Tool {
         public void actionPerformed(ActionEvent e) {
             Toolkit.getDefaultToolkit().beep();
             String title = recipeList.getRemoveTitle();
-            recipeList.removeRecipe(title);
+            try {
+                recipeList.removeRecipe(title);
+            } catch (RecipeNotFoundException recipeNotFoundException) {
+                recipeNotFoundException.printStackTrace();
+            }
             recipeList.setRemoveTitleField();
         }
     }
