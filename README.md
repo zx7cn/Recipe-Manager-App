@@ -25,7 +25,7 @@ AddTool (add a new recipe), RemoveTool (remove a recipe), and ViewTool (view all
 Each class overrides 2 methods inherited from the super class: createButton() and addListener().
 
 ### Phase 4: Task 3
-For the refactoring part, I'm thinking of refactoring the duplicated code in the creatAddPanel(JPanel), 
+For the refactoring part, I'm thinking of refactoring the duplicate code in the creatAddPanel(JPanel), 
 instructionsPanel(JPanel), and ingredientsPanel(JPanel). \
 Another possible refactoring might be extracting the add panel and the remove panel to two new classes, making the UI 
 class less lengthy and more cohesive.
